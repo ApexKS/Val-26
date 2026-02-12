@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>A Special Question</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background-color: #fff0f3;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow-x: hidden; /* Prevents side-scrolling if button jumps */
+        }
+
+        #valentine-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            width: 85%; /* Responsive width */
+            max-width: 400px;
+            text-align: center;
+        }
+
+        h1 { color: #ff4d6d; font-size: 1.5rem; }
+
+        .btn-container {
+            margin-top: 2rem;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            height: 60px; /* Space for buttons */
+        }
+
+        button {
+            padding: 15px 25px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            border: none;
+            border-radius: 50px; /* Rounded pill style looks better on mobile */
+            cursor: pointer;
+            touch-action: manipulation; /* Optimizes for mobile taps */
+        }
+
+        #yes-btn {
+            background-color: #ff4d6d;
+            color: white;
+            z-index: 10;
+        }
+
+        #no-btn {
+        background-color: #adb5bd;
+        color: white;
+        position: fixed; 
+        transition: all 0.2s ease;
+        z-index: 999;
+        /* Ensure no margins or transforms interfere with JS positioning */
+        margin: 0;
+        transform: none; 
+    }
+
+        /* Collage Styling for Mobile */
+        #collage {
+            display: none;
+        }
+
+        .photo-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr); /* 2 columns on mobile */
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .photo-grid img {
+            width: 100%;
+            aspect-ratio: 1 / 1; /* Keeps images as neat squares */
+            object-fit: cover;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="valentine-card">
+        <div id="question-area">
+            <h1>Will you be my Valentine? ❤️</h1>
+            <div class="btn-container">
+                <button id="yes-btn" onclick="showLove()">YES</button>
+                <button id="no-btn">NO</button>
+            </div>
+        </div>
+
+        <div id="collage">
+            <h1>Yay! I love you! 🥰</h1>
+            <div class="photo-grid">
+                <img src="photo1.jpg" alt="Us 1">
+                <img src="photo2.jpg" alt="Us 2">
+                <img src="photo3.jpg" alt="Us 3">
+                <img src="photo4.jpg" alt="Us 4">
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const noBtn = document.getElementById('no-btn');
+    const yesBtn = document.getElementById('yes-btn');
+
+    // This function aligns 'No' perfectly level with 'Yes' on startup
+    function alignButtons() {
+        const rect = yesBtn.getBoundingClientRect();
+        
+        // Match the top edge exactly
+        noBtn.style.top = rect.top + 'px';
+        
+        // Place it to the right of Yes with a 20px gap
+        noBtn.style.left = (rect.right + 20) + 'px';
+        
+        // Ensure the heights match for a perfect level look
+        noBtn.style.height = yesBtn.offsetHeight + 'px';
+    }
+
+    // Align on load and if the window is resized
+    window.onload = alignButtons;
+    window.onresize = alignButtons;
+
+    const moveButton = (e) => {
+        if(e) e.preventDefault();
+        
+        // Boundaries to keep it on screen
+        const maxX = window.innerWidth - noBtn.offsetWidth - 20;
+        const maxY = window.innerHeight - noBtn.offsetHeight - 20;
+
+        const randomX = Math.max(20, Math.floor(Math.random() * maxX));
+        const randomY = Math.max(20, Math.floor(Math.random() * maxY));
+
+        noBtn.style.left = randomX + 'px';
+        noBtn.style.top = randomY + 'px';
+    };
+
+    noBtn.addEventListener('mouseover', moveButton);
+    noBtn.addEventListener('touchstart', moveButton);
+
+    function showLove() {
+        document.getElementById('question-area').style.display = 'none';
+        document.getElementById('collage').style.display = 'block';
+        noBtn.style.display = 'none';
+    }
+    </script>
+</body>
+</html>
