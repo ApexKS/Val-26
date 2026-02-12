@@ -63,24 +63,77 @@
         transform: none; 
     }
 
-        /* Collage Styling for Mobile */
-        #collage {
-            display: none;
-        }
+    #collage-overlay {
+    display: none; 
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw; /* Full Viewport Width */
+    height: 100vh; /* Full Viewport Height */
+    background-color: #fff0f3;
+    z-index: 9999; /* Ensure it is above everything */
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
 
-        .photo-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr); /* 2 columns on mobile */
-            gap: 10px;
-            margin-top: 20px;
-        }
+#collage-overlay h1 {
+    font-size: 2.5rem; /* Bigger text for the big reveal */
+    margin-bottom: 2rem;
+    padding: 0 20px;
+}
 
-        .photo-grid img {
-            width: 100%;
-            aspect-ratio: 1 / 1; /* Keeps images as neat squares */
-            object-fit: cover;
-            border-radius: 10px;
-        }
+.marquee-container {
+    width: 100vw; /* Stretch container to edges */
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.marquee-row {
+    display: flex;
+    white-space: nowrap;
+}
+
+.marquee-content {
+    display: flex;
+    gap: 15px;
+}
+
+.marquee-content img {
+    /* Larger images for full-screen feel */
+    width: 250px; 
+    height: 250px;
+    object-fit: cover;
+    border-radius: 20px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+/* Animations */
+/* Make it look great on mobile too */
+@media (max-width: 600px) {
+    .marquee-content img {
+        width: 180px;
+        height: 180px;
+    }
+    #collage-overlay h1 {
+        font-size: 1.8rem;
+    }
+}
+
+.scroll-left .marquee-content { animation: scroll-left 15s linear infinite; }
+.scroll-right .marquee-content { animation: scroll-right 15s linear infinite; }
+
+@keyframes scroll-left {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+}
+
+@keyframes scroll-right {
+    from { transform: translateX(-50%); }
+    to { transform: translateX(0); }
+}
     </style>
 </head>
 <body>
@@ -93,17 +146,34 @@
                 <button id="no-btn">NO</button>
             </div>
         </div>
+    </div>
+    <div id="collage-overlay">
+    
+    
+    <div class="marquee-container">
+        <div class="marquee-row scroll-left">
+            <div class="marquee-content">
+                <img src="img1.jpg"><img src="img2.jpg"><img src="img3.jpg"><img src="img4.jpg">
+                <img src="img1.jpg"><img src="img2.jpg"><img src="img3.jpg"><img src="img4.jpg">
+            </div>
+        </div>
 
-        <div id="collage">
-            <h1>Yay! I love you! 🥰</h1>
-            <div class="photo-grid">
-                <img src="photo1.jpg" alt="Us 1">
-                <img src="photo2.jpg" alt="Us 2">
-                <img src="photo3.jpg" alt="Us 3">
-                <img src="photo4.jpg" alt="Us 4">
+        <div class="marquee-row scroll-right">
+            <div class="marquee-content">
+                <img src="img5.jpg"><img src="img6.jpg"><img src="img7.jpg"><img src="img8.jpg">
+                <img src="img5.jpg"><img src="img6.jpg"><img src="img7.jpg"><img src="img8.jpg">
+            </div>
+        </div>
+
+        <div class="marquee-row scroll-left">
+            <div class="marquee-content">
+                <img src="img9.jpg"><img src="img10.jpg"><img src="img11.jpg"><img src="img12.jpg">
+                <img src="img9.jpg"><img src="img10.jpg"><img src="img11.jpg"><img src="img12.jpg">
             </div>
         </div>
     </div>
+</div>
+
 
     <script>
         const noBtn = document.getElementById('no-btn');
@@ -145,10 +215,25 @@
     noBtn.addEventListener('touchstart', moveButton);
 
     function showLove() {
-        document.getElementById('question-area').style.display = 'none';
-        document.getElementById('collage').style.display = 'block';
-        noBtn.style.display = 'none';
+    console.log("Yes button clicked!"); // This helps you debug!
+
+    // 1. Hide the original question card
+    const card = document.getElementById('valentine-card');
+    if (card) card.style.display = 'none';
+    
+    // 2. Hide the runaway No button
+    const noBtn = document.getElementById('no-btn');
+    if (noBtn) noBtn.style.display = 'none';
+    
+    // 3. Show the new collage page
+    const overlay = document.getElementById('collage-overlay');
+    if (overlay) {
+        overlay.style.display = 'flex';
+        console.log("Overlay is now visible");
+    } else {
+        console.error("Could not find the element with id 'collage-overlay'");
     }
+}
     </script>
 </body>
 </html>
