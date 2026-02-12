@@ -4,137 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>A Special Question</title>
-    <style>
-        body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            margin: 0;
-            background-color: #fff0f3;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            overflow-x: hidden; /* Prevents side-scrolling if button jumps */
-        }
-
-        #valentine-card {
-            background: white;
-            padding: 2rem;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            width: 85%; /* Responsive width */
-            max-width: 400px;
-            text-align: center;
-        }
-
-        h1 { color: #ff4d6d; font-size: 1.5rem; }
-
-        .btn-container {
-            margin-top: 2rem;
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            height: 60px; /* Space for buttons */
-        }
-
-        button {
-            padding: 15px 25px;
-            font-size: 1.1rem;
-            font-weight: bold;
-            border: none;
-            border-radius: 50px; /* Rounded pill style looks better on mobile */
-            cursor: pointer;
-            touch-action: manipulation; /* Optimizes for mobile taps */
-        }
-
-        #yes-btn {
-            background-color: #ff4d6d;
-            color: white;
-            z-index: 10;
-        }
-
-        #no-btn {
-        background-color: #adb5bd;
-        color: white;
-        position: fixed; 
-        transition: all 0.2s ease;
-        z-index: 999;
-        /* Ensure no margins or transforms interfere with JS positioning */
-        margin: 0;
-        transform: none; 
-    }
-
-    #collage-overlay {
-    display: none; 
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw; /* Full Viewport Width */
-    height: 100vh; /* Full Viewport Height */
-    background-color: #fff0f3;
-    z-index: 9999; /* Ensure it is above everything */
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
-}
-
-#collage-overlay h1 {
-    font-size: 2.5rem; /* Bigger text for the big reveal */
-    margin-bottom: 2rem;
-    padding: 0 20px;
-}
-
-.marquee-container {
-    width: 100vw; /* Stretch container to edges */
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
-
-.marquee-row {
-    display: flex;
-    white-space: nowrap;
-}
-
-.marquee-content {
-    display: flex;
-    gap: 15px;
-}
-
-.marquee-content img {
-    /* Larger images for full-screen feel */
-    width: 250px; 
-    height: 250px;
-    object-fit: cover;
-    border-radius: 20px;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-}
-
-/* Animations */
-/* Make it look great on mobile too */
-@media (max-width: 600px) {
-    .marquee-content img {
-        width: 180px;
-        height: 180px;
-    }
-    #collage-overlay h1 {
-        font-size: 1.8rem;
-    }
-}
-
-.scroll-left .marquee-content { animation: scroll-left 15s linear infinite; }
-.scroll-right .marquee-content { animation: scroll-right 15s linear infinite; }
-
-@keyframes scroll-left {
-    from { transform: translateX(0); }
-    to { transform: translateX(-50%); }
-}
-
-@keyframes scroll-right {
-    from { transform: translateX(-50%); }
-    to { transform: translateX(0); }
-}
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
@@ -173,5 +43,6 @@
         </div>
     </div>
 </div>
+<script src="script.js" defer> </script>
 </body>
 </html>
