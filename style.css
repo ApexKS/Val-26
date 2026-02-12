@@ -19,7 +19,9 @@ body {
             text-align: center;
         }
 
-        h1 { color: #ff4d6d; font-size: 1.5rem; }
+        h1 { 
+            color: #ff4d6d; font-size: 1.5rem; 
+        }
 
         .btn-container {
             margin-top: 2rem;
