@@ -36,7 +36,7 @@ const moveButton = (e) => {
     noBtn.addEventListener('mouseover', moveButton);
     noBtn.addEventListener('touchstart', moveButton);
 
-    function showLove() {
+function showLove() {
     console.log("Yes button clicked!"); // This helps you debug!
 
     // 1. Hide the original question card

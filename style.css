@@ -59,14 +59,14 @@ body {
     }
 
     #collage-overlay {
-    display: none; 
+    display: none; /* Keeps it hidden at start */
     position: fixed;
     top: 0;
     left: 0;
-    width: 100vw; /* Full Viewport Width */
-    height: 100vh; /* Full Viewport Height */
+    width: 100vw;
+    height: 100vh;
     background-color: #fff0f3;
-    z-index: 9999; /* Ensure it is above everything */
+    z-index: 10000;
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -74,16 +74,13 @@ body {
 }
 
 #collage-overlay h1 {
-    font-family: 'Dancing Script', cursive; /* The new beautiful font */
-    font-size: 4rem; 
+    font-family: 'Dancing Script', cursive;
+    font-size: 4rem;
     color: #ff4d6d;
     margin-bottom: 30px;
-    text-shadow: 0 0 15px rgba(255, 77, 109, 0.3); /* Soft glow */
-    text-align: center;
-    padding: 0 20px;
-    animation: pulse 2s infinite; /* Gentle heart-beat effect */
+    text-shadow: 0 0 15px rgba(255, 77, 109, 0.3);
+    animation: pulse 2s infinite;
 }
-
 @keyframes pulse {
     0% { transform: scale(1); }
     50% { transform: scale(1.05); }
