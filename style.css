@@ -74,9 +74,27 @@ body {
 }
 
 #collage-overlay h1 {
-    font-size: 2.5rem; /* Bigger text for the big reveal */
-    margin-bottom: 2rem;
+    font-family: 'Dancing Script', cursive; /* The new beautiful font */
+    font-size: 4rem; 
+    color: #ff4d6d;
+    margin-bottom: 30px;
+    text-shadow: 0 0 15px rgba(255, 77, 109, 0.3); /* Soft glow */
+    text-align: center;
     padding: 0 20px;
+    animation: pulse 2s infinite; /* Gentle heart-beat effect */
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+/* Adjust for mobile screens */
+@media (max-width: 600px) {
+    #collage-overlay h1 {
+        font-size: 2.5rem;
+    }
 }
 
 .marquee-container {
